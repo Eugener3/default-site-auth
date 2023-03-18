@@ -76,7 +76,7 @@ class authController{
                 if (candidate) {
                     if (bcrypt.compareSync(password, candidate.password)) {
                     // Генерируем токен
-                        const token = generateAccessToken(User._id, User.roles)        
+                        const token = generateAccessToken(candidate._id, candidate.roles)        
                         res.status(200).json({message: "Все кул пароль нашелся", token})
                     }
                     else {

@@ -5,6 +5,9 @@ const app = new Router()
 const controller = require('../controllers/authController')
 const {check} = require('express-validator')
 
+const authMiddleware = require("../middlewares/authMiddleware")
+const roleMiddleware = require("../middlewares/roleMiddleware")
+
 // Роуты с проверками
     app.post(
                 '/registration',
@@ -26,6 +29,7 @@ const {check} = require('express-validator')
 
     app.get(
                 '/users', 
+                roleMiddleware(['ADMIN']),
                 controller.getUsers
            );
 
