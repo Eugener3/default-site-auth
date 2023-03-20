@@ -14,14 +14,15 @@ const app = express();
 // Создание промежуточных функций
 app.use(express.json())
 app.use("/auth", authRouter)
-
+mongoose.set('strictQuery', false);
 
 
 // Функция включения сервера
 const start = async() => {
     try {
     // Подключение к базе данных
-        await mongoose.connect(`mongodb+srv://eugener:2212@koka.sveztph.mongodb.net/mongoBase?retryWrites=true&w=majority`)
+    
+        await mongoose.connect(process.env.DB)
     // Включение самого сервера
         app.listen(PORT, () => {
             console.log("Ебать работает");
